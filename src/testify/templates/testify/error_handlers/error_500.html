@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Server error 500{% endblock %}
+{% block body %}
+<div style="margin:100px">
+    <h1>Oh, no! Server collapsed!</h1>
+    <hr>
+    <p>Sorry, something happend to our server. Please, try to refresh.</p>
+    <p>Or feel free to contact us.</p>
+    <p>error code: 500</p>
+    <hr>
+    <a class="nav-link active" href="{% url 'testify:index' %}">Back to Home page</a>
+</div>
+{% endblock %}

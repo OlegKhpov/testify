@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+Attention! You have uncompleted test with this name. Do you wish to continue?
+
+<div>
+    <a class="btn btn-success" href="{% url 'testify:restart' uuid %}">Restart test</a>
+    <a class="btn btn-success" href="{% url 'testify:continue' uuid=uuid index=index %}">Continue</a>
+</div>
+{% endblock %}

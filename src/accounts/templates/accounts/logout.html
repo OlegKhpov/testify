@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+    {% block title %}
+        Log Out
+    {% endblock %}
+    {% block body %}
+        <a class="btn btn-light" href="{% url 'accounts:login' %}">Log in</a>
+        <a class="btn btn-light" href="{% url 'testify:index' %}">Home</a>
+    {% endblock %}

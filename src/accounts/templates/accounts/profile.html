@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+    {% block title %}
+        Profile page
+    {% endblock %}
+    {% block body %}
+        <form method="POST">
+            {% csrf_token %}
+        
+            {{ form|crispy }}
+            
+            <input class="btn btn-light" type="submit" value="Save">
+            <a class="btn btn-light" href="{% url 'accounts:password' %}">Change password</a>
+        </form>
+    {% endblock %}

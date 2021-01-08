@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Test Info{% endblock %}
+{% block body %}
+    
+    <div class="card m-3" style="width: 80%; background-color:azure;">
+        <div class="card-body">
+          <h5 class="card-title">Test: {{ test.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">By: {{test.company_name}}</p>
+          <p>Number of questions: {{ test.questions_count }}</p>
+          <p>Best result by: {{ test.best_result.username }}</p>
+          <p>Last run: {{ test.last_run }}</p>
+          {% if current_started %}
+          <p>Current unfinished run: {{ current_started.date_started }}</p>
+          {% endif %}
+          {% if continue %}
+            <div>
+              <a class="btn btn-danger" href="{% url 'testify:restart' test.uuid %}">Restart test</a>
+              <a class="btn btn-warning" href="{% url 'testify:start' test.uuid %}">Continue</a>
+            </div>
+          {% else %} 
+            <a class="btn btn-success" href="{% url 'testify:start' test.uuid %}">Start</a>
+          {% endif %}
+        </div>
+      </div>
+      <table class="table p-3 m-4" style="background-color: rgb(203, 255, 196); width:75%">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">Time spent</th>
+            <th scope="col">Points</th>
+          </tr>
+        </thead>
+        {% for result in results %}
+        <tbody>
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ result.user.username }}</td>
+                <td>{{ result.time_spent }}</td>
+                <td>{{ result.points }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+{% endblock %}

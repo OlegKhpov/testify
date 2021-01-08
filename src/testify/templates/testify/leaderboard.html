@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Leaderboard{% endblock %}
+{% block body %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"></th>
+        <th scope="col">Username</th>
+        <th scope="col">Rating</th>
+      </tr>
+    </thead>
+    {% for person in persons %}
+    <tbody>
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><img class="rounded-circle" width="25px" height="25px" src="{{ person.image.url }}"></td>
+            <td>{{ person.username }}</td>
+            <td>{{ forloop.counter }} of {{ persons.count }}</td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+{% endblock %}

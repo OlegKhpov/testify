@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load math_func %}
+{% block body %}
+<div class="jumbotron">
+    <h1 class="display-4">Congratulations!</h1>
+    <p class="lead">You've complete the test! - <b>{{ test.name }}</b></p>
+    <p>You scored {{ test_result.num_correct_ans }} out of {{ test.questions_count }}
+    {% expr '%1/%2*100' test_result.num_correct_ans test_result.test.questions_count as progress %}
+    {% if test_result.is_passed %}
+        <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{ progress }}%" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">{{ progress }}%</div>
+        </div></p>
+        <p>You successfully passed the test!</p>
+    {% else %}
+        <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ progress }}%" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">{{ progress }}%</div>
+        </div></p>
+        <p>Unfortunately you scored below required! Try Again later!</p>
+    {% endif %}
+    <p>Completion date/time: {{ test_result.date_complete }}</p>
+    <p>Time spent: {{ test_result.time_spent}}</p>
+    <hr class="my-4">
+    <p>Good job! Try another tests on our website!</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'testify:index' %}" role="button">Home Page</a>
+  </div>
+
+{% endblock %}

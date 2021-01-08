@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load math_func %}
+
+{% block title %}{% endblock %}
+{% block body %}
+  {% expr '(%1-1)/%2*100' question.index question.test.questions_count as progress %}
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: {{ progress }}%" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form_set.management_form }}
+    Question # {{ question.index }}/{{ question.test.questions_count }}: <b>{{ question.question }}</b>
+    {% for form in form_set %}
+      {{ form|crispy }}
+
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+{% endblock %}

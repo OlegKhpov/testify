@@ -1,0 +1,11 @@
+env/
+.idea/
+.vscode/
+*.pyc
+.vscode/settings.json
+.pytest_cache
+htmlcov/
+temp/
+.env
+database_create.txt
+src/app/settings/tests.py

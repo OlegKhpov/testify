@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <body>
+        <div>       
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                <a class="nav-link active" href="{% url 'testify:index' %}">Index</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'testify:leaderboard' %}">Leaderboard</a>
+                </li>
+                
+                {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link p-1 m-1" href="{% url 'accounts:profile' %}">Logged in as <b>{{ user.username }}</b>  <img class="rounded-circle" width="25px" height="25px" src="{{ user.image.url }}"></a>
+                    
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:logout' %}">Log Out</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:contact_us' %}">Contact Us</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:login' %}">Log in</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
+                  </li>
+                {% endif%}
+            </ul>
+          </div>
+          <hr>
+        {% include 'includes/messages_handler.html' %}
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

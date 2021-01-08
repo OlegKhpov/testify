@@ -1,0 +1,1 @@
+default_app_config = 'testify.apps.TestifyConfig' # noqa

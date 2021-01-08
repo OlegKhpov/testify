@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Oops 404!{% endblock %}
+{% block body %}
+<div style="margin:100px">
+    <h1>OOPS! Something's gone wrong</h1>
+    <hr>
+    <p>We can't find page you're looking for.</p>
+    <p>error code: 404</p>
+    <hr>
+    <a class="nav-link active" href="{% url 'testify:index' %}">Back to Home page</a>
+</div>
+{% endblock %}

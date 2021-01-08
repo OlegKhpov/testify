@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load img_indication %}
+{% block title %}Testify Main{% endblock %}
+{% block body %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Company name</th>
+        <th scope="col">Nr. of Questions</th>
+        <th scope="col">Difficulty</th>
+        <th scope="col">Participate</th>
+      </tr>
+    </thead>
+    {% for test in tests %}
+    <tbody>
+        <tr>
+            <td><a href="{% url 'testify:test' test.uuid %}">{{ test.name }}</a></td>
+            <td>{{ test.company_name }}</td>
+            <td>{{ test.questions_count }}</td>
+            
+            <td><img width="75px" height="45px" src="{% difficulty test.difficulty %}" </td>
+            <td><a href="{% url 'testify:start' test.uuid %}">Pass the test</a></td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+{% endblock %}
