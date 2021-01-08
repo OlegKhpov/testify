@@ -42,15 +42,7 @@ services:
      - 444:443
     depends_on:
       - backend
-
-  # rabbitmq:
-  #   image: rabbitmq:3.8-management-alpine
-  #   ports:
-  #     - 8181:15672
-  #   env_file: .env
-  #   restart: always
-
-
+      
   redis:
     image: redis
     env_file: .env
